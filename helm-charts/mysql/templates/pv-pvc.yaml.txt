@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.mysql.volume.name }}
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: {{ .Values.mysql.volume.storage }}
+  accessModes:
+    - {{ .Values.mysql.volume.accessMode }}
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.mysql.volume.pvc.name }}
+spec:
+  storageClassName: manual
+  accessModes:
+    - {{ .Values.mysql.volume.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.mysql.volume.storage }}

@@ -1,0 +1,15 @@
+app:
+  name: flaskapi
+  container:
+    image: arshia2021/flask-api
+    port: 5000
+  service:
+    type: ClusterIP
+    port: 5000
+  hpa:
+    name: flask-hpa
+    maxReplicaCount: 5
+    minReplicaCount: 1
+  secrets:
+    name: flaskapi-secrets
+

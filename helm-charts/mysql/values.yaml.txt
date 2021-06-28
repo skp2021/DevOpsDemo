@@ -1,0 +1,23 @@
+replicaCount: 1
+
+mysql:
+  name: mysql
+  container:
+    image: mysql
+    port: 3306
+  service:
+    type: ClusterIP
+    port: 3306
+  volume:
+    name: mysql-pv-volume
+    storage: 2Gi
+    mountPath: /var/lib/mysql
+    accessMode: ReadWriteOnce
+    pvc:
+      name: mysql-pv-claim
+  secrets:
+    name: flaskapi-secrets
+    data:
+       - key: db_root_password
+         value: SW5kaWFAMzQ1
+
