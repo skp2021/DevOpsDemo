@@ -1,7 +1,7 @@
 app:
   name: flaskapi
   container:
-    image: arshia2021/flask-api
+    image: skp2021/flask-api
     port: 5000
   service:
     type: ClusterIP
